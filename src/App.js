@@ -1,41 +1,65 @@
-import * as React from 'react';
+import * as React from "react";
 
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import Button from '@mui/material/Button'
+import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
+import {
+  Grid2 as Grid,
+  Stack,
+  Box,
+  Container,
+  Paper,
+  CssBaseline,
+  LinearProgress,
+} from "@mui/material";
 
-import TextBlock from "./typeComponents/TextBlock";
-import MainHeading from "./typeComponents/MainHeading";
-import Paragraph from "./typeComponents/Paragraph";
-import SubHeading from "./typeComponents/SubHeading";
+import ProgressBar from "./ProgressBar";
 
 const auTheme = createTheme({
   palette: {
+    background: {
+      default: "#FEF6F7",
+      paper: "#F1E9EE",
+    },
     twilight: {
-      main: '#656284',
-      light: '#AFADC2',
-      dark: '#3A3659',
-      contrastText: '#D7D6E1',
+      main: "#656284",
+      light: "#AFADC2",
+      dark: "#3A3659",
+      contrastText: "#D7D6E1",
     },
     blackberryJam: {
-      main: '#B689A2',
-      light: '#E2D0DA',
-      dark: '#784A63',
-      contrastText: '#F7F2F5',
-    }
-  }
-})
+      main: "#B689A2",
+      light: "#E2D0DA",
+      dark: "#784A63",
+      contrastText: "#F7F2F5",
+    },
+    progressBar: {
+      main: "#F4ACB7",
+      light: "#FDEDEF",
+    },
+  },
+});
+
+// tbh, not sure what the props tag is for, but it's present on the customization page sooo
+const OurProgress = styled(LinearProgress)(({ theme }) => ({}));
 
 export default function App() {
   return (
     <ThemeProvider theme={auTheme}>
-      <TextBlock sx={{bgcolor: 'twilight.light'}}>
-        <MainHeading> Aurora's Test Page?</MainHeading>
-        <SubHeading> u get a bunch of decomp facts app.</SubHeading>
+      <CssBaseline />
 
-        <Paragraph>Did you know that after you die, a lot of your tissues liquefy. This is not due to decomposition, but due to an built-in mechanism in your cells?</Paragraph>
-
-        <Button variant="contained" color="blackberryJam">Guau, great fact!</Button>
-      </TextBlock> 
-      </ThemeProvider>
+      <Grid container columns={12}>
+        <Grid size={10} offset={1}>
+          <Paper sx={{ padding: 2 }}>
+            <Stack spacing={2}>
+              <ProgressBar value={100}></ProgressBar>
+              <ProgressBar
+                value={50}
+                custHeight={15}
+                custPadding={0.5}
+              ></ProgressBar>
+            </Stack>
+          </Paper>
+        </Grid>
+      </Grid>
+    </ThemeProvider>
   );
 }
