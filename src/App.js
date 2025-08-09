@@ -13,11 +13,15 @@ import {
 
 import ProgressBar from "./ProgressBar";
 
+import DecompFacts from "./DecompFacts";
+
 const auTheme = createTheme({
   palette: {
     background: {
       default: "#FEF6F7",
       paper: "#F1E9EE",
+    text: {
+      primary: "#383649",
     },
     twilight: {
       main: "#656284",
@@ -41,11 +45,11 @@ const auTheme = createTheme({
 // tbh, not sure what the props tag is for, but it's present on the customization page sooo
 const OurProgress = styled(LinearProgress)(({ theme }) => ({}));
 
-export default function App() {
+const App = () => {
   return (
     <ThemeProvider theme={auTheme}>
       <CssBaseline />
-
+      
       <Grid container columns={12}>
         <Grid size={10} offset={1}>
           <Paper sx={{ padding: 2 }}>
@@ -62,4 +66,6 @@ export default function App() {
       </Grid>
     </ThemeProvider>
   );
-}
+};
+
+export default App;
