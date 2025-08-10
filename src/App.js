@@ -2,18 +2,19 @@ import * as React from "react";
 
 import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
 import {
+  CssBaseline,
   Grid2 as Grid,
   Stack,
   Box,
   Container,
   Paper,
-  CssBaseline,
-  LinearProgress,
+  Typography
 } from "@mui/material";
 
 import ProgressBar from "./ProgressBar";
 
 import DecompFacts from "./DecompFacts";
+import zIndex from "@mui/material/styles/zIndex";
 
 const auTheme = createTheme({
   palette: {
@@ -40,30 +41,111 @@ const auTheme = createTheme({
       light: "#FDEDEF",
     },
   },
-});
-
-// tbh, not sure what the props tag is for, but it's present on the customization page sooo
-const OurProgress = styled(LinearProgress)(({ theme }) => ({}));
+}});
 
 const App = () => {
   return (
     <ThemeProvider theme={auTheme}>
       <CssBaseline />
-      
-      <Grid container columns={12}>
-        <Grid size={10} offset={1}>
-          <Paper sx={{ padding: 2 }}>
-            <Stack spacing={2}>
-              <ProgressBar value={100}></ProgressBar>
-              <ProgressBar
-                value={50}
-                custHeight={15}
-                custPadding={0.5}
-              ></ProgressBar>
-            </Stack>
-          </Paper>
+
+        {/* So yeah, not ideal, but it works :p
+        TODO: make the height and positioning calculated */}
+        <Grid 
+        container 
+        columns={12} 
+        sx={{ padding: 5}}
+        >
+          <Grid size={12} sx={{ zIndex: 10 }}>
+            <Paper elevation={4} sx={{ paddingY: 3, textAlign: "center" }}>
+              <Typography>I'm on top!</Typography>
+            </Paper>
+          </Grid>
+          <Grid size={12} sx={{ position: "relative", top: -60, zIndex: 0 }}>
+            <Paper elevation={2} sx={{ paddingTop: 17, paddingBottom: 10, textAlign: "center" }}>
+              <Typography>I'm on the bottom!</Typography>
+            </Paper>
+          </Grid>
+          <Grid size={4} offset={8} sx={{ position: "relative", top: -312, zIndex: 20 }}>
+            <Paper elevation={4} sx={{ paddingY: 14.2, textAlign: "center" }}>
+              <Typography>I'm on the side!</Typography>
+            </Paper>
+          </Grid>
         </Grid>
+
+    {/* ~~ Position: relative ~~
+    ~~ This renders best, closest to what we want, but far from ideal and not v responsive...
+    A
+
+    <Grid 
+      container 
+      columns={12} 
+      sx={{ padding: 5}}
+    >
+      <Grid size={12} sx={{zIndex: 10}}>
+        <Paper elevation={4} sx={{ paddingY: 3, textAlign: "center" }}>
+          <Typography>I'm on top!</Typography>
+        </Paper>
       </Grid>
+      <Grid size={12} sx={{position: "relative", top: -60, zIndex: 0}}>
+        <Paper elevation={2} sx={{ paddingTop: 17, paddingBottom: 10, textAlign: "center"}}>
+          <Typography>I'm on the bottom!</Typography>
+        </Paper>
+      </Grid>
+    </Grid> */}
+      
+    {/* ~~ position: absolute ~~
+    ~~ This *will* render the Grid items on top of each other, but it breaks with padding ~~
+    Specifically, the width of the absolute psotioned Grid item will extend past the padding on the right side, even though it respectes the left padding
+
+    <Grid 
+      container 
+      columns={12} 
+      sx={{ padding: 5}}
+    >
+      <Grid size={12} sx={{zIndex: 10}}>
+        <Paper elevation={4} sx={{ paddingY: 3, textAlign: "center" }}>
+          <Typography>I'm on top!</Typography>
+        </Paper>
+      </Grid>
+      <Grid size={1} sx={{position: "absolute", zIndex: 0}}>
+        <Paper elevation={2} sx={{ paddingTop: 17, paddingBottom: 10, textAlign: "center"}}>
+          <Typography>I'm on the bottom!</Typography>
+        </Paper>
+      </Grid>
+    </Grid> */}
+
+    {/* ~~ This will still render the Grid items next to each other in ~~
+
+    <Grid container columns={12} sx={{ padding: 5}}>
+      <Grid size={12} sx={{zIndex: 10}}>
+        <Paper elevation={4} sx={{ paddingY: 3, textAlign: "center" }}>
+          <Typography>I'm on top!</Typography>
+        </Paper>
+      </Grid>
+      <Grid size={12} sx={{zIndex: 0}}>
+        <Paper elevation={2} sx={{ paddingTop: 13, paddingBottom: 10, textAlign: "center"}}>
+          <Typography>I'm on the bottom!</Typography>
+        </Paper>
+      </Grid>
+    </Grid> */}
+
+    {/* ~~ This will render the Grid containers next to each other ~~
+
+    <Grid container columns={12} sx={{ padding: 5, zIndex: 10}}>
+      <Grid size={12} sx={{}}>
+        <Paper elevation={4} sx={{ paddingY: 3, textAlign: "center" }}>
+          <Typography>I'm on top!</Typography>
+        </Paper>
+      </Grid>
+    </Grid>
+    <Grid container columns={12} sx={{ padding: 5, zIndex: 0}}>
+      <Grid size={12} sx={{}}>
+        <Paper elevation={2} sx={{ paddingTop: 13, paddingBottom: 10, textAlign: "center"}}>
+          <Typography>I'm on the bottom!</Typography>
+        </Paper>
+      </Grid>
+    </Grid> */}
+
     </ThemeProvider>
   );
 };
