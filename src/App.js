@@ -7,8 +7,9 @@ import {
   Stack,
   Box,
   Container,
+  Backdrop,
   Paper,
-  Typography
+  Typography,
 } from "@mui/material";
 
 import ProgressBar from "./ProgressBar";
@@ -21,58 +22,70 @@ const auTheme = createTheme({
     background: {
       default: "#FEF6F7",
       paper: "#F1E9EE",
-    text: {
-      primary: "#383649",
-    },
-    twilight: {
-      main: "#656284",
-      light: "#AFADC2",
-      dark: "#3A3659",
-      contrastText: "#D7D6E1",
-    },
-    blackberryJam: {
-      main: "#B689A2",
-      light: "#E2D0DA",
-      dark: "#784A63",
-      contrastText: "#F7F2F5",
-    },
-    progressBar: {
-      main: "#F4ACB7",
-      light: "#FDEDEF",
+      text: {
+        primary: "#383649",
+      },
+      twilight: {
+        main: "#656284",
+        light: "#AFADC2",
+        dark: "#3A3659",
+        contrastText: "#D7D6E1",
+      },
+      blackberryJam: {
+        main: "#B689A2",
+        light: "#E2D0DA",
+        dark: "#784A63",
+        contrastText: "#F7F2F5",
+      },
+      progressBar: {
+        main: "#F4ACB7",
+        light: "#FDEDEF",
+      },
     },
   },
-}});
+});
 
 const App = () => {
   return (
     <ThemeProvider theme={auTheme}>
       <CssBaseline />
 
-        {/* So yeah, not ideal, but it works :p
+      {/* So yeah, not ideal, but it works :p
         TODO: make the height and positioning calculated */}
-        <Grid 
-        container 
-        columns={12} 
-        sx={{ padding: 5}}
+      <Grid container columns={12} sx={{ padding: 5 }}>
+        <Grid size={12} sx={{ zIndex: 10 }}>
+          <Paper elevation={4} sx={{ paddingY: 3, textAlign: "center" }}>
+            <Typography>I'm on top!</Typography>
+          </Paper>
+        </Grid>
+        <Grid size={12} sx={{ position: "relative", top: -60, zIndex: 0 }}>
+          <Paper
+            elevation={2}
+            sx={{ paddingTop: 17, paddingBottom: 10, textAlign: "center" }}
+          >
+            <Typography>I'm on the bottom!</Typography>
+          </Paper>
+        </Grid>
+        <Backdrop
+          open={true}
+          slotProps={{ root: { backgroundColor: "rgba(201, 102, 240, 1)" } }}
+          sx={{
+            position: "relative",
+            width: "100%",
+            height: "100%",
+            top: -311,
+            zIndex: 10,
+          }}
         >
-          <Grid size={12} sx={{ zIndex: 10 }}>
-            <Paper elevation={4} sx={{ paddingY: 3, textAlign: "center" }}>
-              <Typography>I'm on top!</Typography>
-            </Paper>
-          </Grid>
-          <Grid size={12} sx={{ position: "relative", top: -60, zIndex: 0 }}>
-            <Paper elevation={2} sx={{ paddingTop: 17, paddingBottom: 10, textAlign: "center" }}>
-              <Typography>I'm on the bottom!</Typography>
-            </Paper>
-          </Grid>
-          <Grid size={4} offset={8} sx={{ position: "relative", top: -312, zIndex: 20 }}>
+          <Grid size={4} offset={8} sx={{ position: "relative", zIndex: 20 }}>
             <Paper elevation={4} sx={{ paddingY: 14.2, textAlign: "center" }}>
               <Typography>I'm on the side!</Typography>
             </Paper>
           </Grid>
-        </Grid>
+        </Backdrop>
+      </Grid>
 
-    {/* ~~ Position: relative ~~
+      {/* ~~ Position: relative ~~
     ~~ This renders best, closest to what we want, but far from ideal and not v responsive...
     A
 
@@ -92,8 +105,8 @@ const App = () => {
         </Paper>
       </Grid>
     </Grid> */}
-      
-    {/* ~~ position: absolute ~~
+
+      {/* ~~ position: absolute ~~
     ~~ This *will* render the Grid items on top of each other, but it breaks with padding ~~
     Specifically, the width of the absolute psotioned Grid item will extend past the padding on the right side, even though it respectes the left padding
 
@@ -114,7 +127,7 @@ const App = () => {
       </Grid>
     </Grid> */}
 
-    {/* ~~ This will still render the Grid items next to each other in ~~
+      {/* ~~ This will still render the Grid items next to each other in ~~
 
     <Grid container columns={12} sx={{ padding: 5}}>
       <Grid size={12} sx={{zIndex: 10}}>
@@ -129,7 +142,7 @@ const App = () => {
       </Grid>
     </Grid> */}
 
-    {/* ~~ This will render the Grid containers next to each other ~~
+      {/* ~~ This will render the Grid containers next to each other ~~
 
     <Grid container columns={12} sx={{ padding: 5, zIndex: 10}}>
       <Grid size={12} sx={{}}>
@@ -145,7 +158,6 @@ const App = () => {
         </Paper>
       </Grid>
     </Grid> */}
-
     </ThemeProvider>
   );
 };
