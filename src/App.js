@@ -3,7 +3,7 @@ import { useSpring, animated } from "@react-spring/web";
 
 const App = () => {
   // Still a little confused about the map function, this isn't helping...
-  // springs is an object copied into an animated.x component's css styling that seems to contain the animation itself
+  // springs is an object copied into an animated.x component's css styling that seems to contain info about the animation itself
   // api is an object with various methods that let us control an animation
   const [springs, api] = useSpring(() => ({
     from: { x: 0, y: 0 },
@@ -24,6 +24,7 @@ const App = () => {
   };
 
   return (
+    // animated is a HOC, higher-order-component. It returns a given component with all the animation stuff added
     <animated.div
       onClick={handleClick}
       style={{
