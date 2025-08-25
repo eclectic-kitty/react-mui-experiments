@@ -24,7 +24,9 @@ const App = () => {
   };
 
   return (
-    // animated is a HOC, higher-order-component. It returns a given component with all the animation stuff added
+    // animated is a HOC, higher-order-component. It returns a given component with all the animation stuff added.
+    // react-spring has html components built in, accessible with the .
+    // For components from other libraries, one needs to create a styled() version of the component
     <animated.div
       onClick={handleClick}
       style={{
