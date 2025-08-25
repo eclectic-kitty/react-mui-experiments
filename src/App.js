@@ -20,16 +20,24 @@ const AnimatedPaper = animated(Paper);
 
 // Creating the animation
 const App = () => {
-  const springs = useSpring({
+  const [springs, springsApi] = useSpring(() => ({
     // Note that we can seemingly animate any css property?
     // Here using left instead of x to account for the margin
-    from: {
-      left: 0,
-    },
-    to: {
-      left: 100,
-    },
-  });
+    from: { left: 0, opacity: 0 },
+  }));
+
+  const handleClick = () => {
+    springsApi.start({
+      from: {
+        left: 0,
+        opacity: 0,
+      },
+      to: {
+        left: 100,
+        opacity: 1,
+      },
+    });
+  };
 
   return (
     <ThemeProvider theme={auTheme}>
@@ -39,7 +47,7 @@ const App = () => {
           sx={{
             position: "relative",
             textAlign: "center",
-            width: 500,
+            width: 1100,
             margin: 2,
             padding: 1,
           }}
@@ -49,11 +57,17 @@ const App = () => {
             ...springs,
           }}
         >
-          <Typography variant={"h2"}>I'm moving!</Typography>
+          <Typography variant={"h2"}>
+            I've been here the whole time, pardner :p
+          </Typography>
         </AnimatedPaper>
-        <Paper sx={{ textAlign: "center", width: 500, margin: 2, padding: 1 }}>
-          <Typography variant={"h2"}>I'm normal :p</Typography>
+        <Paper sx={{ textAlign: "center", width: 300, margin: 2, padding: 1 }}>
+          <Typography variant={"h2"}>Howdy!</Typography>
         </Paper>
+        {/* Not sure why when we provide the function to onClick, it doesn't need () */}
+        <Button variant="contained" onClick={handleClick}>
+          Hey, something's missin'...
+        </Button>
       </CssBaseline>
     </ThemeProvider>
   );

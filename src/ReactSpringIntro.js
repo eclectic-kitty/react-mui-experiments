@@ -2,9 +2,10 @@ import * as React from "react";
 import { useSpring, animated } from "@react-spring/web";
 
 const App = () => {
-  // Still a little confused about the map function, this isn't helping...
+  // Q: Still a little confused about the map function, this isn't helping...
   // springs is an object copied into an animated.x component's css styling that seems to contain info about the animation itself
   // api is an object with various methods that let us control an animation
+  // Q: Not sure why we need to give a from both to useSpring() and to api.start()
   const [springs, api] = useSpring(() => ({
     from: { x: 0, y: 0 },
   }));
