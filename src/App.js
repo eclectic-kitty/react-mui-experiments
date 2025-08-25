@@ -35,14 +35,17 @@ const App = () => {
     <ThemeProvider theme={auTheme}>
       <CssBaseline>
         <AnimatedPaper
-          // Because this uses the style prop, not sx, it is not theme aware
-          style={{
+          // It looks like we can use both the sx and the style prop...
+          sx={{
             position: "relative",
             textAlign: "center",
             width: 500,
-            // note the margin and padding in pixels, as opposed to the 8-pixel MUI grid
-            margin: 16,
-            padding: 8,
+            margin: 2,
+            padding: 1,
+          }}
+          // But the animation still has to be provided via the style prop
+          // This means anything animation related can not be theme aware
+          style={{
             ...springs,
           }}
         >
