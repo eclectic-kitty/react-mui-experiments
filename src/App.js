@@ -55,7 +55,7 @@ const App = () => {
     setDrawerOpen((prev) => !prev);
   };
 
-  const contRef = useRef(null);
+  const contRef = React.useRef(null);
 
   return (
     <ThemeProvider theme={auTheme}>
@@ -93,8 +93,9 @@ const App = () => {
           }}
         > */}
         <Slide
-          orientation="horizontal"
           in={drawerOpen}
+          direction="right"
+          //container={contRef.current}
           sx={{ width: "100%", height: "100%" }}
         >
           <Grid size={4} offset={8} sx={{ position: "relative", zIndex: 20 }}>
