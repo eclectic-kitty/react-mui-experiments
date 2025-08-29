@@ -69,20 +69,17 @@ const App = () => {
             <Typography>I'm on top!</Typography>
           </Paper>
         </Grid>
-        <Grid
-          size={12}
-          ref={contRef}
-          sx={{ position: "relative", top: -60, zIndex: 0 }}
-        >
+        <Grid size={12} sx={{ position: "relative", top: -60, zIndex: 0 }}>
           <Paper
             elevation={2}
+            ref={contRef}
             sx={{ paddingTop: 17, paddingBottom: 10, textAlign: "center" }}
           >
             <Typography>I'm on the bottom!</Typography>
           </Paper>
         </Grid>
         <Backdrop
-          open={true}
+          open={drawerOpen}
           slotProps={{ root: { backgroundColor: "rgba(201, 102, 240, 1)" } }}
           sx={{
             position: "relative",
@@ -95,12 +92,12 @@ const App = () => {
           <Slide
             in={drawerOpen}
             direction="left"
-            //container={contRef.current}
+            container={contRef.current}
             sx={{ width: "100%", height: "100%" }}
           >
             <Grid size={4} offset={8} sx={{ position: "relative", zIndex: 20 }}>
               <Paper
-                elevation={4}
+                elevation={0}
                 sx={{ paddingY: 14.2, textAlign: "center", width: "100%" }}
               >
                 <Typography>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</Typography>
