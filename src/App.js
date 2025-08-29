@@ -5,6 +5,7 @@ import {
   CssBaseline,
   Grid2 as Grid,
   Collapse,
+  Slide,
   Backdrop,
   Paper,
   Button,
@@ -54,6 +55,8 @@ const App = () => {
     setDrawerOpen((prev) => !prev);
   };
 
+  const contRef = useRef(null);
+
   return (
     <ThemeProvider theme={auTheme}>
       <CssBaseline />
@@ -66,7 +69,11 @@ const App = () => {
             <Typography>I'm on top!</Typography>
           </Paper>
         </Grid>
-        <Grid size={12} sx={{ position: "relative", top: -60, zIndex: 0 }}>
+        <Grid
+          size={12}
+          ref={contRef}
+          sx={{ position: "relative", top: -60, zIndex: 0 }}
+        >
           <Paper
             elevation={2}
             sx={{ paddingTop: 17, paddingBottom: 10, textAlign: "center" }}
@@ -85,7 +92,7 @@ const App = () => {
             zIndex: 10,
           }}
         > */}
-        <Collapse
+        <Slide
           orientation="horizontal"
           in={drawerOpen}
           sx={{ width: "100%", height: "100%" }}
@@ -98,7 +105,7 @@ const App = () => {
               <Typography>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</Typography>
             </Paper>
           </Grid>
-        </Collapse>
+        </Slide>
         {/* </Backdrop> */}
       </Grid>
       <Button variant="contained" onClick={handleDrawer} sx={{ margin: 1 }}>
