@@ -53,6 +53,7 @@ const App = () => {
     // prev doesn't need to be defined because it's a parameter,
     // Also, useState setter functions, when given a function as a parameter, automatically give that function the previous value
     setDrawerOpen((prev) => !prev);
+    console.log(contRef.current);
   };
 
   const contRef = React.useRef(null);
@@ -92,10 +93,10 @@ const App = () => {
           <Slide
             in={drawerOpen}
             direction="left"
-            container={contRef.current}
-            sx={{ width: "100%", height: "100%" }}
+            //container={contRef.current}
+            //sx={{ width: "100%", height: "100%" }}
           >
-            <Grid size={4} offset={8} sx={{ position: "relative", zIndex: 20 }}>
+            <Grid size={1} offset={8} sx={{ position: "relative", zIndex: 20 }}>
               <Paper
                 elevation={0}
                 sx={{ paddingY: 14.2, textAlign: "center", width: "100%" }}
@@ -105,6 +106,42 @@ const App = () => {
             </Grid>
           </Slide>
         </Backdrop>
+        <Grid size={1}>
+          <Paper>hi</Paper>
+        </Grid>
+        <Grid size={1}>
+          <Paper>hi</Paper>
+        </Grid>
+        <Grid size={1}>
+          <Paper>hi</Paper>
+        </Grid>
+        <Grid size={1}>
+          <Paper>hi</Paper>
+        </Grid>
+        <Grid size={1}>
+          <Paper>hi</Paper>
+        </Grid>
+        <Grid size={1}>
+          <Paper>hi</Paper>
+        </Grid>
+        <Grid size={1}>
+          <Paper>hi</Paper>
+        </Grid>
+        <Grid size={1}>
+          <Paper>hi</Paper>
+        </Grid>
+        <Grid size={1}>
+          <Paper>hi</Paper>
+        </Grid>
+        <Grid size={1}>
+          <Paper>hi</Paper>
+        </Grid>
+        <Grid size={1}>
+          <Paper>hi</Paper>
+        </Grid>
+        <Grid size={1}>
+          <Paper>hi</Paper>
+        </Grid>
       </Grid>
       <Button variant="contained" onClick={handleDrawer} sx={{ margin: 1 }}>
         open/close
