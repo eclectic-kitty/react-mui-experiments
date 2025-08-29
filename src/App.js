@@ -81,7 +81,7 @@ const App = () => {
             <Typography>I'm on the bottom!</Typography>
           </Paper>
         </Grid>
-        {/* <Backdrop
+        <Backdrop
           open={true}
           slotProps={{ root: { backgroundColor: "rgba(201, 102, 240, 1)" } }}
           sx={{
@@ -91,23 +91,23 @@ const App = () => {
             top: -311,
             zIndex: 10,
           }}
-        > */}
-        <Slide
-          in={drawerOpen}
-          direction="right"
-          //container={contRef.current}
-          sx={{ width: "100%", height: "100%" }}
         >
-          <Grid size={4} offset={8} sx={{ position: "relative", zIndex: 20 }}>
-            <Paper
-              elevation={4}
-              sx={{ paddingY: 14.2, textAlign: "center", width: "100%" }}
-            >
-              <Typography>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</Typography>
-            </Paper>
-          </Grid>
-        </Slide>
-        {/* </Backdrop> */}
+          <Slide
+            in={drawerOpen}
+            direction="left"
+            //container={contRef.current}
+            sx={{ width: "100%", height: "100%" }}
+          >
+            <Grid size={4} offset={8} sx={{ position: "relative", zIndex: 20 }}>
+              <Paper
+                elevation={4}
+                sx={{ paddingY: 14.2, textAlign: "center", width: "100%" }}
+              >
+                <Typography>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</Typography>
+              </Paper>
+            </Grid>
+          </Slide>
+        </Backdrop>
       </Grid>
       <Button variant="contained" onClick={handleDrawer} sx={{ margin: 1 }}>
         open/close
