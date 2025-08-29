@@ -4,11 +4,10 @@ import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
 import {
   CssBaseline,
   Grid2 as Grid,
-  Stack,
-  Box,
-  Container,
+  Collapse,
   Backdrop,
   Paper,
+  Button,
   Typography,
 } from "@mui/material";
 
@@ -46,6 +45,15 @@ const auTheme = createTheme({
 });
 
 const App = () => {
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
+
+  const handleDrawer = () => {
+    // My understanding is that I'm giving it a function to switch state from the previous to a new one
+    // prev doesn't need to be defined because it's a parameter,
+    // Also, useState setter functions, when given a function as a parameter, automatically give that function the previous value
+    setDrawerOpen((prev) => !prev);
+  };
+
   return (
     <ThemeProvider theme={auTheme}>
       <CssBaseline />
@@ -66,7 +74,7 @@ const App = () => {
             <Typography>I'm on the bottom!</Typography>
           </Paper>
         </Grid>
-        <Backdrop
+        {/* <Backdrop
           open={true}
           slotProps={{ root: { backgroundColor: "rgba(201, 102, 240, 1)" } }}
           sx={{
@@ -76,14 +84,26 @@ const App = () => {
             top: -311,
             zIndex: 10,
           }}
+        > */}
+        <Collapse
+          orientation="horizontal"
+          in={drawerOpen}
+          sx={{ width: "100%", height: "100%" }}
         >
           <Grid size={4} offset={8} sx={{ position: "relative", zIndex: 20 }}>
-            <Paper elevation={4} sx={{ paddingY: 14.2, textAlign: "center" }}>
-              <Typography>I'm on the side!</Typography>
+            <Paper
+              elevation={4}
+              sx={{ paddingY: 14.2, textAlign: "center", width: "100%" }}
+            >
+              <Typography>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</Typography>
             </Paper>
           </Grid>
-        </Backdrop>
+        </Collapse>
+        {/* </Backdrop> */}
       </Grid>
+      <Button variant="contained" onClick={handleDrawer} sx={{ margin: 1 }}>
+        open/close
+      </Button>
 
       {/* ~~ Position: relative ~~
     ~~ This renders best, closest to what we want, but far from ideal and not v responsive...
