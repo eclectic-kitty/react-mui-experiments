@@ -3,6 +3,7 @@ import { animated, useSpring } from "@react-spring/web";
 import {
   CssBaseline,
   Grid2 as Grid,
+  Slide,
   Paper,
   Button,
   Typography,
@@ -66,6 +67,11 @@ const App = () => {
     });
   };
 
+  const [slide, setSlide] = React.useState(false);
+  const handleSlide = () => {
+    setSlide((value) => !value);
+  };
+
   return (
     <ThemeProvider theme={auTheme}>
       <CssBaseline>
@@ -115,6 +121,21 @@ const App = () => {
           </Grid>
         </Grid>
 
+        <Grid container spacing={2} sx={{ margin: 2 }}>
+          <Grid size={8}>
+            <Paper sx={{ textAlign: "center", padding: 2 }}>
+              <Typography variant={"h3"}>hi</Typography>
+            </Paper>
+          </Grid>
+          <Grid size={2}>
+            <Slide direction={"left"} in={slide}>
+              <Paper sx={{ textAlign: "center", padding: 2, height: 300 }}>
+                <Typography variant={"h3"}>hewwo</Typography>
+              </Paper>
+            </Slide>
+          </Grid>
+        </Grid>
+
         {/* Not sure why when we provide the function to onClick, it doesn't need () */}
         <Button variant="contained" onClick={handleTopClick} sx={{ margin: 2 }}>
           Hey, something's missin'...
@@ -125,6 +146,9 @@ const App = () => {
           sx={{ margin: 2 }}
         >
           But will it Grid?
+        </Button>
+        <Button variant="contained" onClick={handleSlide} sx={{ margin: 2 }}>
+          Slide?
         </Button>
       </CssBaseline>
     </ThemeProvider>
