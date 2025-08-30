@@ -88,15 +88,11 @@ const App = () => {
             height: "100%",
             top: -311,
             zIndex: 10,
+            justifyContent: "flex-start", // This is necesassary for Grid item size to be respected
           }}
         >
-          <Slide
-            in={drawerOpen}
-            direction="left"
-            //container={contRef.current}
-            //sx={{ width: "100%", height: "100%" }}
-          >
-            <Grid size={1} offset={8} sx={{ position: "relative", zIndex: 20 }}>
+          <Slide in={drawerOpen} direction="left" container={contRef.current}>
+            <Grid size={2} offset={8} sx={{ zIndex: 20 }}>
               <Paper
                 elevation={0}
                 sx={{ paddingY: 14.2, textAlign: "center", width: "100%" }}
