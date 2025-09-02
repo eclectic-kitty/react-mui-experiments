@@ -21,7 +21,7 @@ const auTheme = createTheme({
   palette: {
     background: {
       default: "#FEF6F7",
-      paper: "#F1E9EE",
+      paper: "#ff96d980",
       text: {
         primary: "#383649",
       },
@@ -64,44 +64,55 @@ const App = () => {
 
       {/* So yeah, not ideal, but it works :p
         TODO: make the height and positioning calculated */}
-      <Grid container columns={12} sx={{ padding: 5 }}>
+      <Grid container columns={12} spacing={0} sx={{ padding: 5 }}>
         <Grid size={12} sx={{ zIndex: 10 }}>
           <Paper elevation={4} sx={{ paddingY: 3, textAlign: "center" }}>
             <Typography>I'm on top!</Typography>
           </Paper>
         </Grid>
-        <Grid size={12} sx={{ position: "relative", top: -60, zIndex: 0 }}>
+        <Grid
+          size={12}
+          ref={contRef}
+          sx={{ position: "relative", top: -72, zIndex: 0 }}
+        >
           <Paper
             elevation={2}
-            ref={contRef}
             sx={{ paddingTop: 17, paddingBottom: 10, textAlign: "center" }}
           >
             <Typography>I'm on the bottom!</Typography>
           </Paper>
         </Grid>
-        <Backdrop
+        {/* <Backdrop
           open={drawerOpen}
           slotProps={{ root: { backgroundColor: "rgba(201, 102, 240, 1)" } }}
           sx={{
             position: "relative",
+            // These two make the backdrop fill the Grid row
             width: "100%",
             height: "100%",
-            top: -311,
-            zIndex: 10,
+            top: -312,
+            zIndex: 10, // This places the backdrop in between the progress bar and checklist
+            borderRadius: 1, // This matches the Paper's radius
             justifyContent: "flex-start", // This is necesassary for Grid item size to be respected
           }}
-        >
-          <Slide in={drawerOpen} direction="left" container={contRef.current}>
-            <Grid size={2} offset={8} sx={{ zIndex: 20 }}>
-              <Paper
-                elevation={0}
-                sx={{ paddingY: 14.2, textAlign: "center", width: "100%" }}
-              >
-                <Typography>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</Typography>
-              </Paper>
-            </Grid>
-          </Slide>
-        </Backdrop>
+        > */}
+        <Slide in={drawerOpen} direction="left" container={contRef.current}>
+          <Grid size={4} offset={8} sx={{ zIndex: 20 }}>
+            <Paper
+              elevation={0}
+              sx={{
+                position: "relative",
+                top: -312,
+                paddingY: 13.5,
+                textAlign: "center",
+                width: "100%",
+              }}
+            >
+              <Typography>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</Typography>
+            </Paper>
+          </Grid>
+        </Slide>
+        {/* </Backdrop> */}
         <Grid size={1}>
           <Paper>hi</Paper>
         </Grid>
